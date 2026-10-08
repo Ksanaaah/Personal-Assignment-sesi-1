@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reflective Journal Sesi 1 - AMI Muslim Growth</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+tailwind.config = { theme: { extend: { fontFamily: { sans: ['"Plus Jakarta Sans"','sans-serif'], arabic: ['"Amiri"','serif'] } } } }
+</script>
+<style>
+  @media print {
+    body { background:#fff !important; font-size:11pt; }
+    .no-print { display:none !important; }
+    .print-shadow-none { box-shadow:none !important; border:1px solid #d1d5db !important; }
+  }
+  section, .keep { break-inside: avoid; page-break-inside: avoid; }
+
+  #pdf-container {
+    position: absolute; top: 0; left: 0;
+    width: 1024px; background: #fff;
+    z-index: -1; pointer-events: none;
+  }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-emerald-100 selection:text-emerald-900">
+
+<header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 no-print">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-800 to-teal-600 flex items-center justify-center text-white shadow-md">
+        <i class="fa-solid fa-feather text-lg"></i>
+      </div>
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 block">AMI Muslim Growth</span>
+        <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Digital Reflective Journal — Sesi 1</h1>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button id="btnSaveDraft" class="px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-colors flex items-center gap-2">
+        <i class="fa-regular fa-floppy-disk"></i><span class="hidden sm:inline">Simpan Draft</span>
+      </button>
+      <button id="btnDownloadPdf" class="px-4 py-2 text-xs sm:text-sm font-semibold bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg shadow-sm transition-all flex items-center gap-2">
+        <i class="fa-solid fa-download"></i><span>Unduh PDF</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-4 sm:px-6 py-8 flex-grow w-full space-y-8">
+
+  <div class="keep bg-gradient-to-br from-emerald-900 via-teal-900 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+    <div class="absolute -right-16 -top-16 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="relative z-10 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-200 text-xs font-semibold">
+        <i class="fa-solid fa-compass"></i> Pekan 1: Unpack the Wound (Minus &rarr; Netral)
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Mengenali Luka Diri yang Belum Selesai</h2>
+      <p class="text-emerald-100/90 text-sm sm:text-base leading-relaxed max-w-3xl">
+        Lembar kerja refleksi pribadi untuk membedakan fakta murni dari cerita palsu di kepala kita, meredakan kritik diri yang melukai, dan menambatkan penerimaan takdir secara lapang kepada Allah Ta'ala.
+      </p>
+      <div class="pt-3 border-t border-emerald-700/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm text-emerald-200/90">
+        <span class="italic font-arabic text-base sm:text-lg" dir="rtl">قَدَّرَ اللَّهُ وَمَا شَاءَ فَعَلَ</span>
+        <span class="text-emerald-300">"Qaddarullah wa maa syaa-a fa'al — Allah telah menakdirkan, dan apa yang Dia kehendaki pasti terjadi." (HR. Muslim)</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm print-shadow-none">
+    <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
+      <h3 class="font-bold text-slate-800 text-base flex items-center gap-2"><i class="fa-solid fa-shield-halved text-emerald-600"></i> Identitas &amp; Ruang Aman Refleksi</h3>
+      <span class="text-xs text-slate-500 italic"><i class="fa-solid fa-lock mr-1"></i> Data disimpan lokal di browsermu</span>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div>
+        <label class="block text-xs font-bold text-slate-600 mb-1" for="inputName">Nama Lengkap / Panggilan Akrab</label>
+        <input type="text" id="inputName" placeholder="Contoh: Ridha / Fia" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-slate-600 mb-1" for="inputDate">Tanggal Pengisian</label>
+        <input type="date" id="inputDate" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-slate-600 mb-1" for="inputRole">Peran Utama Saat Ini</label>
+        <input type="text" id="inputRole" placeholder="Misal: Ibu Rumah Tangga / Profesional / Mahasiswa" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+      </div>
+    </div>
+  </section>
+
+  <div class="no-print bg-amber-50/80 border border-amber-200 rounded-2xl p-4 sm:p-5 flex items-start gap-4">
+    <div class="w-9 h-9 rounded-xl bg-amber-200 text-amber-800 flex items-center justify-center shrink-0 mt-0.5"><i class="fa-solid fa-lightbulb"></i></div>
+    <div class="text-xs sm:text-sm text-amber-900 leading-relaxed">
+      <p class="font-bold mb-1">Panduan Mengisi Lembar Kerja (Alur Bertahap MCP):</p>
+      <p>Isilah 5 tahapan di bawah ini dari yang paling mudah (memindai tubuh) hingga yang paling menantang (penyerahan takdir). Tidak perlu terburu-buru. Ambil jeda napas jika dadamu terasa berat.</p>
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <section class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200 shadow-sm print-shadow-none">
+    <div class="flex items-start justify-between gap-4 mb-4">
+      <div>
+        <div class="inline-flex text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md mb-2">Langkah 1 (Paling Mudah)</div>
+        <h4 class="text-lg font-bold text-slate-900">Sadari &amp; Catat Sinyal Fisik Batinmu Saat Ini</h4>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">Duduklah dengan tenang, taruh tangan kanan di atas dada, dan perhatikan apa yang terasa di tubuhmu sebelum mulai menulis.</p>
+      </div>
+      <div class="w-8 h-8 shrink-0 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-sm">1</div>
+    </div>
+    <div class="space-y-3 mb-4">
+      <span class="text-xs font-bold text-slate-700 block">Centang sensasi fisik atau emosi yang dominan muncul akhir-akhir ini:</span>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 text-xs text-slate-700">
+        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 cursor-pointer"><input type="checkbox" name="symptom" value="Dada sering berdebar/tertekan" class="rounded text-emerald-600"><span>Dada sering berdebar / tertekan</span></label>
+        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 cursor-pointer"><input type="checkbox" name="symptom" value="Susah tidur / sering terbangun cemas" class="rounded text-emerald-600"><span>Susah tidur / terbangun cemas</span></label>
+        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 cursor-pointer"><input type="checkbox" name="symptom" value="Bahu tegang / leher kaku" class="rounded text-emerald-600"><span>Bahu tegang / leher kaku</span></label>
+        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 cursor-pointer"><input type="checkbox" name="symptom" value="Rasa hampa / mati rasa / kehilangan spark" class="rounded text-emerald-600"><span>Rasa hampa / mati rasa / hilang spark</span></label>
+        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 cursor-pointer"><input type="checkbox" name="symptom" value="Takut dihakimi / takut salah" class="rounded text-emerald-600"><span>Takut dihakimi / takut salah melangkah</span></label>
+        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 cursor-pointer"><input type="checkbox" name="symptom" value="Emosi cepat meledak lalu menyesal" class="rounded text-emerald-600"><span>Emosi cepat meledak lalu menyesal</span></label>
+      </div>
+    </div>
+    <label class="block text-xs font-semibold text-slate-700 mb-1.5" for="bodyScanText">Deskripsikan kalimat yang paling mewakili kondisi fisik dan emosimu saat ini:</label>
+    <textarea id="bodyScanText" rows="2" placeholder="Contoh: Saat memikirkan masa depan atau tuntutan keluarga, dadaku terasa sesak dan tenggorokanku seperti tercekat..." class="w-full p-3 text-sm rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200 shadow-sm print-shadow-none">
+    <div class="flex items-start justify-between gap-4 mb-4">
+      <div>
+        <div class="inline-flex text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-md mb-2">Langkah 2</div>
+        <h4 class="text-lg font-bold text-slate-900">Tuliskan Fakta Peristiwa Secara Objektif (Tanpa Bumbu Cerita)</h4>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">Pisahkan antara peristiwa yang benar-benar terekam kamera (<em>The Fact</em>) dengan tuduhan atau vonis buruk dari pikiranmu.</p>
+      </div>
+      <div class="w-8 h-8 shrink-0 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-sm">2</div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-rose-50/60 border border-rose-200/80 rounded-xl p-4">
+        <label class="block text-xs font-bold text-rose-800 mb-1" for="subjectiveStory"><i class="fa-solid fa-circle-xmark"></i> Bumbu Cerita / Vonis Pikiran yang Menyakitkan:</label>
+        <p class="text-[11px] text-rose-700 mb-2 italic">Contoh: "Aku perempuan gagal dan tidak berguna karena belum kerja dan belum punya momongan."</p>
+        <textarea id="subjectiveStory" rows="4" placeholder="Tuliskan tuduhan yang selama ini menghantui pikiranmu..." class="w-full p-3 text-sm rounded-lg border border-rose-200 bg-white focus:ring-2 focus:ring-rose-400 outline-none"></textarea>
+      </div>
+      <div class="bg-emerald-50/60 border border-emerald-200/80 rounded-xl p-4">
+        <label class="block text-xs font-bold text-emerald-800 mb-1" for="objectiveFact"><i class="fa-solid fa-circle-check"></i> Fakta Murni Peristiwa (Data Objektif Saja):</label>
+        <p class="text-[11px] text-emerald-700 mb-2 italic">Contoh: "Aku sudah 2 tahun menikah, sedang masa pemulihan medis, dan saat ini belum berpenghasilan."</p>
+        <textarea id="objectiveFact" rows="4" placeholder="Tuliskan peristiwa nyata seobjektif mungkin tanpa kata 'aku bodoh/gagal/rusak'..." class="w-full p-3 text-sm rounded-lg border border-emerald-200 bg-white focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200 shadow-sm print-shadow-none">
+    <div class="flex items-start justify-between gap-4 mb-4">
+      <div>
+        <div class="inline-flex text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-md mb-2">Langkah 3 (Inti Transformasi)</div>
+        <h4 class="text-lg font-bold text-slate-900">Bongkar Topeng Makna Keliru (False Meaning Decoder)</h4>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">Luka masa lalu bertahan karena makna keliru yang kita sematkan. Mari kita bongkar kebohongannya sekarang.</p>
+      </div>
+      <div class="w-8 h-8 shrink-0 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-sm">3</div>
+    </div>
+    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1" for="falseMeaning">1. Apa Makna Keliru (<em>False Meaning</em>) yang Selama Ini Menjeratmu?</label>
+        <p class="text-[11px] text-slate-500 mb-1.5">Rumus: <em>"Peristiwa ini terjadi, berarti aku pasti [lemah / tidak diinginkan / layak disakiti]..."</em></p>
+        <textarea id="falseMeaning" rows="2" placeholder="Contoh: Karena pernikahanku dingin / ta'arufku gagal, berarti aku tidak pantas dicintai." class="w-full p-3 text-sm rounded-xl border border-slate-200 bg-white focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+      </div>
+      <div>
+        <label class="block text-xs font-bold text-slate-700 mb-1" for="deconstructedMeaning">2. Dekonstruksi &amp; Kebenaran Sejati (<em>Reframed Meaning</em>):</label>
+        <p class="text-[11px] text-slate-500 mb-1.5">Kebenarannya: Perlakuan buruk orang lain atau kegagalan rencana manusia tidak pernah mengurangi kemuliaan dirimu di hadapan Allah.</p>
+        <textarea id="deconstructedMeaning" rows="3" placeholder="Contoh: Sikap kasar orang lain mencerminkan ketidakdewasaannya, bukan tanda bahwa aku hina. Nilai diriku ditentukan oleh ketakwaanku pada Allah, bukan oleh penilaian manusia." class="w-full p-3 text-sm rounded-xl border border-slate-200 bg-white focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200 shadow-sm print-shadow-none">
+    <div class="flex items-start justify-between gap-4 mb-4">
+      <div>
+        <div class="inline-flex text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md mb-2">Langkah 4</div>
+        <h4 class="text-lg font-bold text-slate-900">Latih Suara Welas Asih pada Diri Sendiri (Self-Compassion Dialogue)</h4>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">Hentikan menghardik diri. Bicaralah kepada dirimu sendiri sebagaimana seorang sahabat yang paling menyayangimu berbicara.</p>
+      </div>
+      <div class="w-8 h-8 shrink-0 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-sm">4</div>
+    </div>
+    <div class="bg-amber-50/50 border border-amber-200/80 rounded-2xl p-4 sm:p-5 space-y-3">
+      <p class="text-xs text-amber-900 font-medium leading-relaxed">Tuliskan surat singkat / kalimat penuh kasih sayang untuk dirimu yang selama ini sudah lelah berjuang dan sering kamu hakimi:</p>
+      <textarea id="compassionScript" rows="4" placeholder="Wahai diriku, maafkan aku karena selama ini terlalu keras padamu. Waktu itu kamu mengambil keputusan tersebut dengan pengetahuan dan emosi yang kamu miliki saat itu. Kamu telah bertahan sejauh ini, dan kamu layak dicintai serta diampuni..." class="w-full p-3.5 text-sm rounded-xl border border-amber-200 bg-white focus:ring-2 focus:ring-amber-500 outline-none"></textarea>
+    </div>
+  </section>
+
+  <!-- STEP 5 -->
+  <section class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200 shadow-sm print-shadow-none">
+    <div class="flex items-start justify-between gap-4 mb-4">
+      <div>
+        <div class="inline-flex text-xs font-bold text-emerald-800 bg-emerald-100/70 px-2.5 py-1 rounded-md mb-2">Langkah 5 (Paling Menantang &amp; Membebaskan)</div>
+        <h4 class="text-lg font-bold text-slate-900">Lepaskan Hak Menghakimi Takdir &amp; Berserahlah Penuh</h4>
+        <p class="text-xs sm:text-sm text-slate-500 mt-1">Berhenti berkata <em>"Seandainya dulu..."</em>. Kembalikan beban yang bukan kuasa tanganmu ke dalam genggaman Allah.</p>
+      </div>
+      <div class="w-8 h-8 shrink-0 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-sm">5</div>
+    </div>
+    <div class="space-y-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <span class="text-xs font-bold text-slate-700 block mb-1"><i class="fa-solid fa-hand-holding text-rose-600 mr-1"></i> Hal yang AKU LEPASKAN (Di Luar Kontrolku):</span>
+          <p class="text-[11px] text-slate-500 mb-2">Perlakuan pasangan, opini orang tua/mertua, waktu datangnya jodoh/rezeki/anak.</p>
+          <textarea id="surrenderRelease" rows="3" placeholder="Contoh: Aku melepaskan tuntutan agar semua orang menyukaiku dan berhenti memaksakan kapan masalah ini harus selesai..." class="w-full p-2.5 text-sm rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <span class="text-xs font-bold text-slate-700 block mb-1"><i class="fa-solid fa-bullseye text-emerald-600 mr-1"></i> 1 Ikhtiar Nyata yang BISA AKU KONTROL Hari Ini:</span>
+          <p class="text-[11px] text-slate-500 mb-2">Respons emosiku, ibadah khusyukku, caraku menjaga batasan diri, dan langkah kecil belajarku.</p>
+          <textarea id="surrenderControl" rows="3" placeholder="Contoh: Hari ini aku memilih istirahat tepat waktu, sholat dengan tenang, dan berani menolak permintaan yang melebihi energiku tanpa rasa bersalah..." class="w-full p-2.5 text-sm rounded-lg border border-slate-200 bg-white focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
+        </div>
+      </div>
+      <div class="keep p-4 rounded-xl bg-emerald-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="space-y-1">
+          <h5 class="text-sm font-bold text-emerald-200 flex items-center gap-2"><i class="fa-solid fa-heart text-emerald-400"></i> Ikrar Batin Menuju Netral:</h5>
+          <p class="text-xs text-emerald-100/90 italic">"Peristiwa itu memang telah terjadi, namun luka palsunya tidak lagi mendikte harga diriku. Aku menerima takdir-Mu dengan lapang dada."</p>
+        </div>
+        <label class="flex items-center gap-2 bg-emerald-800/80 px-4 py-2.5 rounded-xl border border-emerald-600/50 cursor-pointer text-xs font-semibold text-emerald-100 shrink-0">
+          <input type="checkbox" id="commitmentCheck" class="rounded text-emerald-500"><span>Saya Ridha &amp; Berkomitmen</span>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRACKER -->
+  <section class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm print-shadow-none">
+    <div class="border-b border-slate-100 pb-3 mb-4">
+      <h4 class="font-bold text-slate-900 text-base flex items-center gap-2"><i class="fa-solid fa-calendar-check text-emerald-600"></i> Tracker Jurnal Reflektif Sepekan (Senin – Jumat)</h4>
+      <p class="text-xs text-slate-500 mt-0.5">Isilah 1 kalimat penerimaan takdir setiap malam sebelum tidur:</p>
+    </div>
+    <div class="space-y-3">
+      <div class="keep flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs"><span class="w-16 shrink-0 font-bold text-slate-700 mt-2">Senin:</span><textarea id="logMon" rows="1" placeholder="Hari ini aku belajar menerima..." class="w-full bg-white px-3 py-2 rounded-lg border border-slate-200 outline-none resize-none overflow-hidden"></textarea></div>
+      <div class="keep flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs"><span class="w-16 shrink-0 font-bold text-slate-700 mt-2">Selasa:</span><textarea id="logTue" rows="1" placeholder="Hari ini aku melepaskan rasa bersalah tentang..." class="w-full bg-white px-3 py-2 rounded-lg border border-slate-200 outline-none resize-none overflow-hidden"></textarea></div>
+      <div class="keep flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs"><span class="w-16 shrink-0 font-bold text-slate-700 mt-2">Rabu:</span><textarea id="logWed" rows="1" placeholder="Hari ini aku memperlakukan diriku dengan lembut saat..." class="w-full bg-white px-3 py-2 rounded-lg border border-slate-200 outline-none resize-none overflow-hidden"></textarea></div>
+      <div class="keep flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs"><span class="w-16 shrink-0 font-bold text-slate-700 mt-2">Kamis:</span><textarea id="logThu" rows="1" placeholder="Hari ini aku menolak untuk diperbudak oleh asumsi..." class="w-full bg-white px-3 py-2 rounded-lg border border-slate-200 outline-none resize-none overflow-hidden"></textarea></div>
+      <div class="keep flex items-start gap-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs"><span class="w-16 shrink-0 font-bold text-slate-700 mt-2">Jumat:</span><textarea id="logFri" rows="1" placeholder="Alhamdulillah, batin terasa lebih ringan karena..." class="w-full bg-white px-3 py-2 rounded-lg border border-slate-200 outline-none resize-none overflow-hidden"></textarea></div>
+    </div>
+  </section>
+
+  <div class="border-t border-slate-200 pt-4 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+    <span>Kelas: <strong>Kembali Menemukan Jati Diri</strong> &bull; Akademi Muslim ID</span>
+    <span class="italic">"Dari Allah, Bersama Allah, Menuju Allah"</span>
+  </div>
+</main>
+
+<div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+  <div class="bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-3 text-sm border border-slate-700">
+    <i class="fa-solid fa-circle-check text-emerald-400"></i><span id="toastMsg"></span>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'ami_worksheet_sesi_1_state';
+const fieldIds = ['inputName','inputDate','inputRole','bodyScanText','subjectiveStory','objectiveFact','falseMeaning','deconstructedMeaning','compassionScript','surrenderRelease','surrenderControl','commitmentCheck','logMon','logTue','logWed','logThu','logFri'];
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').innerText = msg;
+  t.classList.remove('translate-y-20','opacity-0');
+  setTimeout(() => t.classList.add('translate-y-20','opacity-0'), 3000);
+}
+
+function saveState(silent) {
+  const data = {};
+  fieldIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) data[id] = el.type === 'checkbox' ? el.checked : el.value;
+  });
+  data.symptoms = [...document.querySelectorAll('input[name="symptom"]:checked')].map(cb => cb.value);
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    if (!silent) showToast('Draft jurnal berhasil disimpan!');
+  } catch (e) { console.warn('Gagal menyimpan lokal:', e); }
+}
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) { document.getElementById('inputDate').value = new Date().toISOString().split('T')[0]; return; }
+    const data = JSON.parse(saved);
+    fieldIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && data[id] !== undefined) { if (el.type === 'checkbox') el.checked = data[id]; else el.value = data[id]; }
+    });
+    if (Array.isArray(data.symptoms)) {
+      document.querySelectorAll('input[name="symptom"]').forEach(cb => { cb.checked = data.symptoms.includes(cb.value); });
+    }
+  } catch (e) { console.warn('Gagal memuat draft:', e); }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  loadState();
+  document.getElementById('btnSaveDraft').addEventListener('click', () => saveState(false));
+
+  document.getElementById('btnDownloadPdf').addEventListener('click', async function () {
+    const btn = this;
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Memproses PDF...</span>';
+    btn.disabled = true;
+    window.scrollTo(0, 0);
+
+    const W = 1024; // lebar render (px)
+    const holder = document.createElement('div');
+    holder.id = 'pdf-container';
+    document.body.appendChild(holder);
+
+    const src = document.querySelector('main');
+    const clone = src.cloneNode(true);
+    clone.style.cssText = 'width:' + W + 'px;max-width:none;margin:0;padding:16px 24px;box-sizing:border-box;';
+    holder.appendChild(clone);
+
+    // Ganti input/textarea dengan div agar teks panjang ter-wrap penuh
+    const srcFields = src.querySelectorAll('input, textarea');
+    const cloneFields = clone.querySelectorAll('input, textarea');
+    srcFields.forEach((s, i) => {
+      const c = cloneFields[i];
+      if (s.type === 'checkbox') {
+        c.checked = s.checked;
+        if (s.checked) c.setAttribute('checked', 'checked');
+        return;
+      }
+      const box = document.createElement('div');
+      box.className = c.className;
+      box.classList.remove('resize-none', 'overflow-hidden');
+      box.style.cssText = 'white-space:pre-wrap;overflow-wrap:anywhere;min-height:2.5rem;';
+      box.textContent = s.value;
+      c.replaceWith(box);
+    });
+    clone.querySelectorAll('.no-print').forEach(el => el.remove());
+
+    try {
+      await document.fonts.ready;
+      await new Promise(r => setTimeout(r, 300));
+
+      const SCALE = 1.5;
+      const canvas = await html2canvas(clone, {
+        scale: SCALE, useCORS: true, backgroundColor: '#ffffff',
+        width: W, windowWidth: W, x: 0, y: 0, scrollX: 0, scrollY: 0
+      });
+
+      // Ukuran halaman A4 portrait, margin 10mm
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+      const M = 10, contentW = 210 - 2 * M, contentH = 297 - 2 * M;
+      const pageHpx = Math.floor(W * contentH / contentW);   // tinggi 1 halaman (px CSS)
+      const totalPx = Math.round(canvas.height / SCALE);
+
+      // Titik potong aman = bagian atas tiap blok utama
+      const cTop = clone.getBoundingClientRect().top;
+      const breaks = [...clone.children].map(el => Math.round(el.getBoundingClientRect().top - cTop));
+
+      let y = 0, first = true;
+      while (y < totalPx - 2) {
+        let end = Math.min(y + pageHpx, totalPx);
+        if (end < totalPx) {
+          const ok = breaks.filter(b => b > y + 250 && b <= end);
+          if (ok.length) end = Math.max(...ok);
+        }
+        const sliceH = end - y;
+        const page = document.createElement('canvas');
+        page.width = canvas.width;
+        page.height = Math.round(sliceH * SCALE);
+        const ctx = page.getContext('2d');
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, page.width, page.height);
+        ctx.drawImage(canvas, 0, Math.round(y * SCALE), canvas.width, page.height, 0, 0, canvas.width, page.height);
+
+        if (!first) pdf.addPage();
+        pdf.addImage(page.toDataURL('image/jpeg', 0.95), 'JPEG', M, M, contentW, sliceH * contentW / W);
+        first = false;
+        y = end;
+      }
+
+      pdf.save('Jurnal-Refleksi-Sesi-1.pdf');
+      showToast('PDF berhasil diunduh!');
+    } catch (err) {
+      console.error(err);
+      alert('Terjadi kesalahan saat membuat PDF. Coba buka lewat Chrome/Safari.');
+    } finally {
+      holder.remove();
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+    }
+  });
+
+  // Auto-save (debounce)
+  let timeout;
+  document.querySelectorAll('input, textarea').forEach(el => {
+    el.addEventListener('input', () => { clearTimeout(timeout); timeout = setTimeout(() => saveState(true), 1500); });
+  });
+});
+</script>
+</body>
+</html>
